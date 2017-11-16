@@ -1,20 +1,24 @@
-#import sklearn.linear_model.perceptron
 from sklearn import linear_model
-from collections import defaultdict
-
-
 import numpy as np
-#from sklearn import datasets
+
+
+
+
+"""
+A script that calls the sklearn's implementation of the percepton algorithm on our dataset to train the feature vector wieghts for our dataset. 
+Then we use these weights to make predictions on our test dataset and output the accuracy of the algorithm on our dataset.
+Author(s): Bryce Bodley-Gomes, Theodore Proulx
+"""
 
 def main():
-    y_list = []
-    x_list = []
+    y_list = [] #a list of the genres for each song
+    x_list = [] # a list of lists for the feature weights (the word counts for each song in a sparse list format)
 
 
 
 
-    file = open("ourDataset.txt", 'r')
-    usecount = 0
+    file = open("ourTrainDataset.txt", 'r')
+   
     for line in file:
         if line.startswith('%') or line.startswith('#'):
             pass
@@ -26,28 +30,21 @@ def main():
             weightx = [0]*5000
             for x in wordVal:
                 weightx[int(x.split(':')[0])-1] = int(x.split(':')[1].rstrip())
-
             x_list.append(weightx)
-            if usecount ==127402:
-                print weightx
-            if usecount<127403:
-                usecount+=1
-            else:
-                break
+			
 
 
-
-    X = np.array(x_list)
+	#convert lists into numpy arrays
+    X = np.array(x_list) 
     Y = np.array(y_list)
 
-    print "len Y", len(Y)
-    print "len X:" , len(X)
-    classifier = linear_model.Perceptron()
-    classifier.fit(X, Y)
+
+    classifier = linear_model.Perceptron() #create instance of the perceptron
+    classifier.fit(X, Y) #run firt function on the dataset
 
 
-    #predictions
-    file = open("test.txt", 'r') #open the testfile
+    #make predictions and get the accuracy
+    file = open("ourTestDataset.txt", 'r') #open the testfile
     correct_count=0.0
     total =0.0
     for line in file: #loop over the lines and preform prediciton and see if the prediction is correct.
