@@ -3,4 +3,4 @@ This is a project for the UMass CS 585 Introduction to Natural Language Proccess
 In this project we aim to use a bag of words representation of lyrics to classify a song's genre. 
 We will be running various classification algorithms and ranking them to determine the most effective algorithm.
 
-Our datasets are derived from theMillion Songs Dataset
+Our datasets are derived from the Million Songs Dataset
