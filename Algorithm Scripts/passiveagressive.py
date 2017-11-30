@@ -27,7 +27,7 @@ def main():
             pass
         else:
             count += 1
-            if count > 100:
+            if count > 10000:
                 break
             wordVal = line.split(',')
             y_list.append(wordVal[2])
@@ -37,7 +37,7 @@ def main():
             for x in wordVal:
                 weightx[int(x.split(':')[0])-1] = int(x.split(':')[1].rstrip())
             x_list.append(weightx)
-    print "done training"
+    print "done reading"
 
 
 	#convert lists into numpy arrays
@@ -45,10 +45,10 @@ def main():
     Y = np.array(y_list)
 
 
-    classifier = linear_model.Perceptron() #create instance of the perceptron
+    classifier = linear_model.PassiveAggressiveClassifier() #create instance of the perceptron
     classifier.fit(X, Y) #run firt function on the dataset
 
-    print "done"
+    print "done training"
     #make predictions and get the accuracy
     file = open("ourTestDataset.txt", 'r') #open the testfile
     correct_count=0.0

@@ -1,5 +1,7 @@
 from sklearn import linear_model
 import numpy as np
+import warnings
+warnings.simplefilter("ignore", DeprecationWarning)
 
 
 
