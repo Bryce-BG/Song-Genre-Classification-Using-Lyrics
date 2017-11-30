@@ -5,7 +5,7 @@ import numpy as np
 
 
 """
-A script that calls the sklearn's implementation of the percepton algorithm on our dataset to train the feature vector wieghts for our dataset. 
+A script that calls the sklearn's implementation of the percepton algorithm on our dataset to train the feature vector wieghts for our dataset.
 Then we use these weights to make predictions on our test dataset and output the accuracy of the algorithm on our dataset.
 Author(s): Bryce Bodley-Gomes, Theodore Proulx
 """
@@ -18,11 +18,15 @@ def main():
 
 
     file = open("ourTrainDataset.txt", 'r')
-   
+
+    count = 0
     for line in file:
         if line.startswith('%') or line.startswith('#'):
             pass
         else:
+            count += 1
+            if count > 20:
+                break
             wordVal = line.split(',')
             y_list.append(wordVal[2])
 
@@ -31,18 +35,18 @@ def main():
             for x in wordVal:
                 weightx[int(x.split(':')[0])-1] = int(x.split(':')[1].rstrip())
             x_list.append(weightx)
-			
+    print "done training"
 
 
 	#convert lists into numpy arrays
-    X = np.array(x_list) 
+    X = np.array(x_list)
     Y = np.array(y_list)
 
 
     classifier = linear_model.Perceptron() #create instance of the perceptron
     classifier.fit(X, Y) #run firt function on the dataset
 
-
+    print "done"
     #make predictions and get the accuracy
     file = open("ourTestDataset.txt", 'r') #open the testfile
     correct_count=0.0
