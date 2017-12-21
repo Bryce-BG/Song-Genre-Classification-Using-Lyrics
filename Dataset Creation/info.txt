@@ -1,0 +1,29 @@
+Description of files and their functions.
+
+msd-topMAGD-genreAssignment.cls :
+This file contains TrackIDs linked to genres. It comes from the MSD.
+
+CombineBOWWithGenre.py :
+This scrpit takes 2 datasets and merges them together. The first dataset links TrackID to genre and the second links TrackID to lyrics  in BOW format. This merged dataset now links genre to lyrics, which is what we need for our project. It does this by comparing the TrackID linked to the genre and the TrackID linked to the lyrics. If the TrackIDs are the same, we link the genre and the lyrics together, since we know they belong to the same song.
+
+testingmatch.py :
+This script tests to see what percentage of songs we lose by merging the two sets. Unfortunately, we lose about half of the original dataset.
+
+compile_genre_list.py :
+This script parses through our dataset and makes a dictionary mapping each genre to the number of times that it occurs. We used this to determine how many genres we were working with and the percentage of the dataset that each makes up.
+
+SplitDataset.py :
+This scrpit takes our dataset that links genre to lyrics and splits it into two sets for training and testing. Training will done on 90% of the dataset and testing will be done on the remaining 10%. The two new sets are each written to files to be used later on.
+
+mxm_dataset_train.txt :
+This file contains the training data.
+
+mxm_dataset_train.txt :
+This file contains the testing data.
+
+CombineTestAndTrain.py :
+This script combines the training and testing datasets into one file for more streamlined useage.
+
+
+
+
